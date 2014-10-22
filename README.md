@@ -1,20 +1,20 @@
 # Indian
 
 Indian is an experimental web server for Ruby applications that takes 
-advantage of `SO_REUSEPORT`, epoll and threads.
+advantage of modern Linux kernel (version 3.14+) features and threads.
 
 ## Design
 
-Indian is inspired by the venerable Erlang HTTP web server Cowboy. While we
-can't emulate everything Cowboy does in Ruby, due to the differences between
-Ruby and Erlang, we can borrow a little bit from Cowboy's design.
+Indian is inspired by the Erlang HTTP web server Cowboy. While we can't emulate
+everything Cowboy does in Ruby, due to the differences between Ruby and Erlang,
+we can borrow a little bit from Cowboy's design.
 
 Cowboy works by spawning a listening socket and then sharing that socket with a
-pool of Erlang processes that accept on the socket. Erlang's unit of
-concurrency is known as a process. Erlang processes spawn very quickly so this
-model works well. In Ruby we have threads for concurrency, which unfortunately
-don't spawn that fast. It is best to spawn the threads you need upfront and
-re-use them.
+pool (potentially thousands of acceptors) of Erlang processes that accept on
+the socket. Erlang's unit of concurrency is known as a process. Erlang
+processes spawn very quickly so this model works well. In Ruby we have threads
+for concurrency, which unfortunately don't spawn that fast. It is best to spawn
+the threads you need upfront and re-use them.
 
 The two premier Ruby web servers today, Unicorn and Puma, work in very
 interesting and different ways. Unicorn is a lot like Cowboy in that it shares
@@ -64,7 +64,9 @@ This gem is not ready to be used yet.
 
 ## TODO
 
-- [ ] epoll FFI binding for Ruby
+- [ ] epoll FFI binding for Ruby or just use nio4r
+- [ ] TCP_FASTOPEN (Linux kernel 3.7+)
+- [ ] TCP_AUTOCORKING (Linux kernel 3.14+)
 
 ## Contributing
 

@@ -6,7 +6,7 @@ module Indian
     end
 
     def run
-      @acceptors = 16.times.map { Acceptor.new(@app) }
+      @acceptors = 4.times.map { Acceptor.new(@app) }
       @acceptors.map(&:join)
     end
   end

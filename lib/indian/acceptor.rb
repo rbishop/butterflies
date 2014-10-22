@@ -11,13 +11,13 @@ module Indian
     end
 
     def accept
-      @thr = Thread.new do
         socket = Socket.new(:INET, :STREAM)
         socket.setsockopt(Socket::SOL_SOCKET, Socket::SO_REUSEPORT, 1)
         sockaddr = Socket.pack_sockaddr_in(3000, 'localhost')
         socket.bind(sockaddr)
         socket.listen(1024)
 
+      @thr = Thread.new do
         loop do
           client, _ = socket.accept
           parser = Http::Parser.new(self)
