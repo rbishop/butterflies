@@ -1,11 +1,11 @@
-# Indian
+# Butterflies
 
-Indian is an experimental web server for Ruby applications that takes 
+Butterflies is an experimental web server for Ruby applications that takes 
 advantage of modern Linux kernel (version 3.14+) features and threads.
 
 ## Design
 
-Indian is inspired by the Erlang HTTP web server Cowboy. While we can't emulate
+Butterflies is inspired by the Erlang HTTP web server Cowboy. While we can't emulate
 everything Cowboy does in Ruby, due to the differences between Ruby and Erlang,
 we can borrow a little bit from Cowboy's design.
 
@@ -34,9 +34,9 @@ request in parallel per operating system process. The disadvantage is that you
 have only one acceptor and have to manage the log of waiting connections
 instead of letting the operating systen kernel do this for you.
 
-Like Puma, Indian is designed using threads. Indian takes advantage of the
+Like Puma, Butterflies is designed using threads. Butterflies takes advantage of the
 `SO_REUSEPORT` socket option that is available in Linux kernel version 3.9+ and
-BSD operating systems. Each Indian thread can listen and accept connections on
+BSD operating systems. Each Butterflies thread can listen and accept connections on
 the same port.  The back log of connections will be load balanced by the
 underlying kernel so you get performance and reliability without having to
 manage that complexity yourself.  You get the simplicity of Unicorn with the
@@ -47,7 +47,7 @@ parallel request handling of Puma!
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'indian'
+gem 'butterflies'
 ```
 
 And then execute:
@@ -56,7 +56,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install indian
+    $ gem install butterflies
 
 ## Usage
 
@@ -70,7 +70,7 @@ This gem is not ready to be used yet.
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/indian/fork )
+1. Fork it ( https://github.com/[my-github-username]/butterflies/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

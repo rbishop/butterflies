@@ -1,13 +1,13 @@
 require 'rack/handler'
-require 'indian'
+require 'butterflies'
 
 module Rack
   module Handler
-    module Indian
+    module Butterflies
       def self.run(app, opts = {})
-        master = ::Indian::Master.new(app)
+        master = ::Butterflies::Master.new(app)
 
-        puts "Indian #{::Indian::VERSION} starting..."
+        puts "Butterflies #{::Butterflies::VERSION} starting..."
         puts "* Process ID #{Process.pid}"
         puts "* Environment: #{ENV['RACK_ENV']}"
         puts "* Listening on localhost:3000"
@@ -22,6 +22,6 @@ module Rack
       end
     end
 
-    register :indian, Indian
+    register :butterflies, Butterflies
   end
 end
